@@ -5,10 +5,12 @@ require('mahrio').runServer(process.env, __dirname)
     .then( function(server) {
 
         server.route({
-            path: '/',
+            path: '/{param*}',
             method: 'GET',
-            handler: function(req, rep){
-                rep('Your d3.js visual site here!');
+            handler: {
+              directory: {
+                path: ['../public/']
+              }
             }
         });
 
